@@ -1,0 +1,470 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Tanu & Suraj</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&family=Pinyon+Script&family=Quattrocento:wght@400;700&family=Roboto+Mono:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one narrow column, stacked full-width bands (hero, story, ceremony, program, gallery, contact),
+   each band with its own inner gutter. Single warm look chosen on purpose: an invitation, not an app. */
+:root {
+  --ink: #3a2415;
+  --ink-soft: #5a3f28;
+  --gold: #a87a3a;
+  --cream: #f6ead0;
+  --parch: #dcc08f;
+  --parch-light: #efe2c3;
+  --sand: #e6d3a6;
+  --chip: #ecd0a3;
+  --plum: #2b2044;
+  --plum-deep: #1d1530;
+  --bloom: #d9d0c3;
+  --night: #170f0a;
+
+  --f-script: "Pinyon Script", "Snell Roundhand", cursive;
+  --f-head: "Quattrocento", Georgia, "Times New Roman", serif;
+  --f-body: "Roboto Mono", "Courier New", monospace;
+  --f-label: "Roboto Mono", "Courier New", monospace;
+
+  --gutter: 24px;
+  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .36  0 0 0 0 .23  0 0 0 0 .1  0 0 0 .26 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html.locked, html.locked body { overflow: hidden; }
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3, p { margin: 0; }
+
+.page { max-width: 480px; margin-inline: auto; overflow: hidden; background: var(--parch) url("img/bg2.jpg") center / cover fixed no-repeat; }
+.in {
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+
+a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: 0 0 0 6px var(--gold); }
+
+/* ---------- Cover ---------- */
+.cover {
+  position: fixed; inset: 0; z-index: 50;
+  display: grid; text-align: center; overflow-y: auto;
+  background: #0d1a14 url("img/cover_bg.jpg") center / cover no-repeat;
+  padding-block: calc(24px + env(safe-area-inset-top, 0px)) calc(24px + env(safe-area-inset-bottom, 0px));
+  padding-left: max(28px, env(safe-area-inset-left, 0px));
+  padding-right: max(28px, env(safe-area-inset-right, 0px));
+  transition: opacity .7s ease;
+}
+.cover::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(rgba(10,18,14,.5), rgba(10,18,14,.68)); }
+.cover.is-open { opacity: 0; pointer-events: none; }
+.bgvid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .9s ease; z-index: 0; }
+.bgvid.on { opacity: 1; }
+@media (min-aspect-ratio: 1/1) { .cover { background-image: url("img/cover_wide.jpg"); } }
+.gate {
+  position: relative; z-index: 2; margin: auto; width: min(100%, 380px); padding: 38px 24px 26px;
+  display: grid; gap: 18px; justify-items: center;
+  border-radius: 18px; border: 1px solid rgba(255, 244, 222, .45);
+  background: rgba(40, 26, 12, .26);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1); backdrop-filter: blur(16px) saturate(1.1);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .35);
+}
+.gate h2 {
+  font-family: var(--f-head); font-weight: 400; font-size: clamp(26px, 7.6vw, 32px);
+  line-height: 1.22; letter-spacing: .05em; text-transform: uppercase; color: #fff7e6;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .55); text-wrap: balance;
+}
+.rule { display: flex; align-items: center; gap: 12px; width: 100%; max-width: 210px; color: #f1d9a8; }
+.rule::before, .rule::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: .7; }
+.gate form { width: 100%; display: grid; gap: 12px; margin-top: 4px; }
+.field { position: relative; }
+.field input {
+  width: 100%; height: 54px; padding: 0 52px; border-radius: 10px; border: 1px solid rgba(255, 244, 222, .85);
+  background: rgba(255, 247, 230, .94); color: var(--ink); text-align: center;
+  font-family: var(--f-body); font-weight: 700; font-size: 18px; letter-spacing: .08em;
+}
+.field input::placeholder { color: #7d6650; font-weight: 400; letter-spacing: .03em; opacity: 1; }
+.eye { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; display: grid; place-items: center;
+  border: 0; background: transparent; color: var(--ink-soft); cursor: pointer; border-radius: 8px; }
+.eye svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.eye .off { display: none; }
+.eye[aria-pressed="true"] .on { display: none; }
+.eye[aria-pressed="true"] .off { display: inline; }
+.err { color: #ffd6b8; font-size: 14px; line-height: 1.45; text-shadow: 0 1px 6px rgba(0, 0, 0, .5); }
+.err:empty { display: none; }
+.hint {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 10px; padding: 10px 14px;
+  border-radius: 10px; border: 1px solid rgba(255, 244, 222, .35); background: rgba(25, 14, 6, .3);
+  color: #fff1d6; font-family: var(--f-label); font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
+}
+.hint button {
+  min-height: 40px; padding: 4px 14px; border: 0; border-radius: 8px; background: var(--chip); color: var(--ink);
+  font-family: var(--f-label); font-weight: 600; font-size: 16px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer;
+  box-shadow: 0 2px 10px rgba(60, 30, 0, .3);
+}
+.gate .btn { width: 100%; margin-top: 2px; }
+.gate .btn[type="submit"] { text-decoration: none; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 50px;
+  padding: 12px 30px; border: 1px solid rgba(255, 244, 222, .85); background: rgba(40, 22, 8, .28);
+  color: #fff7e6; font-family: var(--f-label); font-weight: 600; font-size: 15px; letter-spacing: .08em;
+  text-transform: uppercase; text-decoration: underline; text-underline-offset: 4px; cursor: pointer;
+  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+}
+.btn:active { background: rgba(40, 22, 8, .5); }
+.btn--dark { color: var(--ink); border-color: var(--ink-soft); background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; isolation: isolate; overflow: hidden; background: #b98a2c; text-align: center; color: #cdc1ab; }
+.hero-video { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero::before { content: ""; position: absolute; z-index: 1; inset: 0; background: linear-gradient(rgba(60,30,0,.08), rgba(60,30,0,.28)); pointer-events: none; }
+.hero .in { position: relative; z-index: 2; min-height: 80svh; padding-block: 0; display: flex; flex-direction: column; align-items: center; }
+.names { width: 100%; margin-top: 24svh; margin-bottom: 18px; font-family: var(--f-script); font-weight: 400; font-size: clamp(34px, 13.5vw, 72px); line-height: .98; white-space: nowrap;
+  color: #cdc1ab; -webkit-text-stroke: 3.2px #c29667; paint-order: stroke fill; text-shadow: 0 3px 16px rgba(70, 36, 0, .55); }
+.names span { display: inline; white-space: nowrap; }
+.tagline { font-family: var(--f-head); font-weight: 700; font-size: clamp(16px, 4.5vw, 23px); letter-spacing: .05em; text-transform: uppercase; text-shadow: 0 1px 10px rgba(60, 30, 0, .8); text-wrap: balance; }
+.hero .btn { margin-top: 48px; color: #cdc1ab; }
+.chips { width: 100%; margin-top: auto; margin-bottom: max(7vh, 30px); display: flex; align-items: end; justify-content: space-between; gap: 8px; }
+.chip { max-width: 100%; padding: 0; border-radius: 0; background: none; color: #cdc1ab; font-family: var(--f-label); font-weight: 700;
+  font-size: clamp(10px, 3.2vw, 16px); line-height: 1.4; letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; text-shadow: 0 1px 10px rgba(60, 30, 0, .8); }
+
+/* ---------- Paper bands ---------- */
+.paper { position: relative; background: transparent; }
+.paper--light { background: transparent; }
+
+.heading { font-family: var(--f-head); font-weight: 400; font-size: clamp(22px, 6.6vw, 28px); line-height: 1.25; letter-spacing: .09em; text-transform: uppercase; text-align: center; text-wrap: balance; color: var(--ink); }
+.heading--big { font-weight: 700; font-size: clamp(32px, 9.6vw, 40px); letter-spacing: .04em; }
+
+/* ---------- Story ---------- */
+.story .in { padding-block: 48px 40px; display: grid; gap: 22px; justify-items: center; }
+.story .heading { font-size: clamp(18px, 4.2vw, 24px); letter-spacing: .06em; }
+.frame { width: min(100%, 400px); aspect-ratio: 430 / 484; object-fit: cover; filter: drop-shadow(0 6px 14px rgba(70, 40, 10, .28)); }
+.story .heading + .frame { margin-bottom: 8px; }
+.story p { width: 100%; max-width: none; font-size: clamp(13px, 3.2vw, 16px); line-height: 1.4; text-align: center; text-wrap: pretty; hyphens: manual; }
+
+.stack { background: transparent; padding-block: 18px; display: grid; gap: 18px; justify-items: center; }
+.stack img { width: 100%; box-shadow: 0 3px 12px rgba(60, 35, 10, .3); }
+
+/* ---------- Ceremony ---------- */
+.ceremony { background: transparent; }
+.ceremony .in { padding-block: 56px 72px; display: grid; gap: 52px; }
+.ceremony header { text-align: center; }
+.item { display: grid; justify-items: center; text-align: center; gap: 10px; }
+.item img { height: 104px; width: auto; max-width: 100%; margin-bottom: 4px; }
+.item img.oval { height: 92px; }
+.item h3 { font-family: var(--f-head); font-weight: 700; font-size: 25px; line-height: 1.2; color: var(--ink); }
+.item p { max-width: 34ch; text-wrap: pretty; }
+
+/* ---------- Program ---------- */
+.program .in { padding-block: 42px 38px; }
+.program .heading { margin-bottom: 24px; }
+.program ol { list-style: none; margin: 0; padding: 0; }
+.program li { display: grid; grid-template-columns: 5.4rem 56px minmax(0, 1fr); align-items: center; column-gap: 10px; min-height: 82px; padding-block: 10px; border-bottom: 1px dotted rgba(58, 36, 21, .72); }
+.program li:last-child { border-bottom: 0; }
+.program time { font-family: var(--f-body); font-weight: 500; font-size: 15px; color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.program .ico { width: 48px; height: 48px; justify-self: center; fill: none; stroke: var(--ink-soft); stroke-width: 1.45; stroke-linecap: round; stroke-linejoin: round; }
+.program li span { text-align: right; font-size: clamp(14px, 3.3vw, 16px); line-height: 1.4; text-wrap: balance; }
+
+/* ---------- Gallery ---------- */
+.gallery {
+  background: var(--plum) url("img/bg3.png") center / cover no-repeat;
+}
+.gallery .in { padding-block: 40px 44px; display: grid; gap: 22px; justify-items: center; }
+.gallery-caption { width: 100%; margin: 0; color: #e7d4a3; font-family: "Noto Serif Bengali", serif; font-weight: 700; font-size: clamp(20px, 5.4vw, 27px); line-height: 1.45; text-align: center; text-wrap: balance; }
+.gallery img { display: block; width: min(100%, 320px); height: auto; border: 0; outline: 0; box-shadow: 0 8px 22px rgba(0, 0, 0, .45); }
+
+/* ---------- Contact ---------- */
+.contact .in { padding-block: 52px 56px; display: grid; justify-items: center; gap: 22px; text-align: center; }
+.contact .portrait { width: min(200px, 56vw); filter: drop-shadow(0 5px 12px rgba(70, 40, 10, .3)); }
+.contact h2 { font-family: var(--f-script); font-weight: 400; font-size: clamp(46px, 14vw, 58px); line-height: 1; color: var(--ink); }
+.people { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+.person { display: grid; gap: 2px; justify-items: center; min-width: 0; }
+.person .nm { font-family: var(--f-script); font-size: 29px; line-height: 1.15; color: var(--ink-soft); }
+.person a { color: var(--ink); font-family: var(--f-body); font-weight: 700; font-size: 17px; letter-spacing: .02em; text-decoration: underline; text-underline-offset: 4px; min-height: 44px; display: inline-flex; align-items: center; font-variant-numeric: tabular-nums; }
+.contact .btn { margin-top: 6px; }
+.foot { background: var(--night); color: #cdb894; text-align: center; font-family: var(--f-label); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; padding-block: 22px calc(22px + env(safe-area-inset-bottom, 0px)); }
+
+
+.sound {
+  position: fixed; z-index: 60; width: 48px; height: 48px; display: grid; place-items: center; padding: 0; cursor: pointer;
+  right: max(16px, env(safe-area-inset-right, 0px), calc((100vw - 480px) / 2 + 16px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  border-radius: 50%; border: 1px solid rgba(255, 244, 222, .6); background: rgba(40, 26, 12, .6); color: #fff7e6;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 4px 16px rgba(0, 0, 0, .35);
+}
+.sound svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.sound .sp { fill: currentColor; stroke: none; }
+.sound .waves { display: none; }
+.sound[aria-pressed="true"] .waves { display: inline; }
+.sound[aria-pressed="true"] .slash { display: none; }
+
+@media (min-width: 380px) { .item img { height: 116px; } .item img.oval { height: 100px; } }
+@media (prefers-reduced-motion: no-preference) {
+  .gate.shake { animation: shake .4s ease; }
+  @keyframes shake { 20% { transform: translateX(-8px); } 40% { transform: translateX(7px); } 60% { transform: translateX(-5px); } 80% { transform: translateX(3px); } }
+  .cover { animation: fadein .9s ease; }
+  @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+}
+@media (prefers-reduced-motion: reduce) { .cover { transition: none; } }
+</style>
+
+<div class="cover" id="cover" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <video class="bgvid" id="bgvid" muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
+  <div class="gate" id="gate">
+    <h2 id="gate-title">We have a good news to share</h2>
+    <div class="rule" aria-hidden="true"><svg width="14" height="13" viewBox="0 0 24 22" fill="currentColor"><path d="M12 21.500 3.200 12.900C-.5 9.200 1 3 6.200 3c2.400 0 4.200 1.400 5.800 3.400C13.600 4.400 15.400 3 17.800 3 23 3 24.500 9.200 20.800 12.900z"/></svg></div>
+    <form id="gate-form" novalidate>
+      <div class="field">
+        <input id="pw" name="pw" type="password" placeholder="Password" aria-label="Password" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="go">
+        <button class="eye" id="eye" type="button" aria-label="Show password" aria-pressed="false">
+          <svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.600-6.500 10-6.500S22 12 22 12s-3.600 6.500-10 6.500S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          <svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.600 5.600A10 10 0 0 1 12 5.500C18.400 5.500 22 12 22 12a17 17 0 0 1-3.200 3.900M6.500 6.900A17 17 0 0 0 2 12s3.600 6.500 10 6.500a9.800 9.800 0 0 0 4-.9M9.900 9.900a3 3 0 0 0 4.200 4.200"/></svg>
+        </button>
+      </div>
+      <p class="err" id="err" role="alert"></p>
+      <div class="hint"><span>Password is</span><button type="button" id="fill" aria-label="Fill in the password SURTAN">SURTAN</button></div>
+      <button class="btn" type="submit">Open invitation</button>
+    </form>
+  </div>
+</div>
+
+<main class="page">
+  <section class="hero" id="invite" aria-label="Engagement invitation">
+    <video class="hero-video" id="hero-video" loop playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
+    <div class="in">
+      <h1 class="names" tabindex="-1" aria-label="Tanu and Suraj"><span class="a" aria-hidden="true">Tanu</span><span class="b" aria-hidden="true">&amp; Suraj</span></h1>
+      <p class="tagline">are getting engaged</p>
+      <a class="btn" href="https://forms.gle/bnyNScFQsySujCT38" target="_blank" rel="noopener">RSVP here</a>
+      <div class="chips">
+        <span class="chip">December 7, 2026, 3:00 PM</span>
+        <span class="chip">#SURTAN</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="paper story" aria-label="Our story">
+    <div class="in">
+      <h2 class="heading">Our love for art</h2>
+      <img class="frame" src="img/lights.png" alt="Tanu and Suraj walking under a canopy of string lights at night" width="860" height="968">
+      <h2 class="heading">And each other</h2>
+      <p>What started as a simple Tinder connection in 2020 eventually became a journey of its own. While we may see the world differently and have our share of disagreements, we have always found common ground in our love for art, the art of living, and the little things that make life beautiful. Somewhere along the way, we began dreaming of a slower, gentler life together, one built on love, understanding, and breaking the cycles we grew up with. Through all the growing, learning, and figuring things out, we have found a way to make life work together.</p>
+    </div>
+  </section>
+
+  <div class="stack in" aria-label="Photographs">
+    <img src="img/temple.png" alt="Tanu and Suraj facing a Durga idol, seen from behind" width="884" height="1104">
+    <img src="img/hibiscus.png" alt="Red hibiscus with a line of Bengali and Hindi verse about being held close across lifetimes" width="884" height="876">
+  </div>
+
+  <section class="ceremony" aria-label="The ceremony">
+    <div class="in">
+      <header><h2 class="heading heading--big">The Ceremony</h2></header>
+      <div class="item">
+        <img src="img/arch.png" alt="" width="720" height="600">
+        <h3>Sagai Venue</h3>
+        <p>The ceremony will take place at Black Bears Farmstay, Jaipur, an open air garden space. Expect fresh air, soft grass, and a beautiful golden hour glow, with a hint of chill in the late evening.</p>
+      </div>
+      <div class="item">
+        <img class="oval" src="img/oval.png" alt="" width="820" height="588">
+        <h3>Dress Code</h3>
+        <p>Dress comfortably for an open air garden celebration, keeping the soft grass and chilly late evening breeze in mind. Wear whatever makes you feel your best, in any color except dark pink, and preferably not white, as these are reserved for the bride and groom. This is just a gentle preference, not a rule!</p>
+      </div>
+      <div class="item">
+        <img src="img/glasses.png" alt="" width="620" height="652">
+        <h3>After Party</h3>
+        <p>A small get-together for friends and those who enjoy a little music, a bonfire, and some fun photoshoots. Nothing formal or fancy, just a relaxed evening to hang out and continue the celebrations!</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="paper paper--light program" aria-label="Program">
+    <div class="in">
+      <h2 class="heading heading--big">Program</h2>
+      <ol>
+        <li><time>3:00 PM</time>
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 10c4 6 4 14 0 22-4-8-4-16 0-22z"/><path d="M24 32c-8-1-14-6-16-14 8 0 13 5 16 14z"/><path d="M24 32c8-1 14-6 16-14-8 0-13 5-16 14z"/><path d="M24 32C13 34 6 31 3 25c7-2 14 1 21 7z"/><path d="M24 32c11 2 18-1 21-7-7-2-14 1-21 7z"/><path d="M11 38h26"/></svg>
+          <span>Pooja</span></li>
+        <li><time>4:00 PM</time>
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="17" cy="28" r="11"/><circle cx="17" cy="28" r="8"/><circle cx="30" cy="22" r="11"/><circle cx="30" cy="22" r="8"/><path d="M27 8l3-4 3 4"/></svg>
+          <span>Ring Ceremony</span></li>
+        <li><time>5:00 PM</time>
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><g transform="rotate(-8 17 27)"><rect x="5" y="14" width="22" height="26" rx="1.5"/><path d="M16 32c-4-3-5-5-5-7a3 3 0 0 1 5-1 3 3 0 0 1 5 1c0 2-1 4-5 7z"/></g><rect x="22" y="11" width="20" height="26" rx="1.5" transform="rotate(7 32 24)"/></svg>
+          <span>Picture Taking</span></li>
+        <li><time>6:00 PM</time>
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M17 19h17c0 8-4 13-8.5 13S17 27 17 19z"/><path d="M19 19c0-5 13-5 13 0"/><circle cx="25.5" cy="12.5" r="1.6"/><path d="M34 21c7-1 8 8 0 9"/><path d="M17 21c-4-1-7-4-9-8 4-1 7 2 9 5"/><path d="M5 37h14l-2 8H7z"/></svg>
+          <span>Snacks and High Tea</span></li>
+        <li><time>6:30 PM</time>
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="4" r="2"/><path d="M24 6v5M16 18l8-7 8 7zM15 18h18v20c0 3-18 3-18 0zM19 35V26a2.5 2.5 0 0 1 5 0v9M24 35V26a2.5 2.5 0 0 1 5 0v9M20 42l4 5 4-5"/></svg>
+          <span>Khoom Fay &amp; Fireworks</span></li>
+        <li><time>7:30 PM</time>
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="26" cy="25" r="12"/><circle cx="26" cy="25" r="8"/><path d="M5 10v10M8.5 10v10M12 10v10M5 20a3.5 3.5 0 0 0 7 0M8.5 23v21M43 10c-3 3-4 9-3 15h3zM43 25v19"/></svg>
+          <span>Dinner</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="stack in" aria-label="Photograph">
+    <img src="img/rings.png" alt="Their joined hands, with rings, over a lotus rangoli" width="884" height="1114">
+  </div>
+
+  <section class="gallery" aria-label="Photo gallery">
+    <div class="in">
+      <p class="gallery-caption" lang="bn">আমারো পরানো যাহা চায়</p>
+      <img src="img/kiss.png" alt="Suraj kissing Tanu's cheek under the string lights" width="692" height="898">
+      <img src="img/redwall.png" alt="Tanu in a red saree and Suraj in front of a red painted wall" width="690" height="890">
+      <img src="img/dip.png" alt="Suraj dipping Tanu in a dance pose under the string lights" width="688" height="894">
+      <p class="gallery-caption" lang="bn">আমারো পরানো যাহা চায়</p>
+    </div>
+  </section>
+
+  <section class="paper contact" id="contact" aria-label="Contact">
+    <div class="in">
+      <img class="portrait" src="img/contact.png" alt="Tanu and Suraj showing their rings" width="432" height="492">
+      <h2>Contact Us</h2>
+      <div class="people">
+        <div class="person"><span class="nm">Tanu Debnath</span><a href="tel:+917005333031">7005333031</a></div>
+        <div class="person"><span class="nm">Suraj Kesri</span><a href="tel:+919455386877">9455386877</a></div>
+      </div>
+      <a class="btn btn--dark" href="https://forms.gle/bnyNScFQsySujCT38" target="_blank" rel="noopener">RSVP here</a>
+    </div>
+  </section>
+  <footer class="foot">#SURTAN &nbsp;·&nbsp; 7 December 2026</footer>
+</main>
+<button class="sound" id="sound" type="button" aria-label="Sound" aria-pressed="false">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path class="sp" d="M3 9.500v5h4l5 4v-13l-5 4z"/><g class="waves"><path d="M15.500 9a4.500 4.500 0 0 1 0 6"/><path d="M18.200 6.300a8.300 8.300 0 0 1 0 11.400"/></g><g class="slash"><path d="M16 9.500l5 5M21 9.500l-5 5"/></g></svg>
+</button>
+
+<script>
+(function () {
+  var cover = document.getElementById('cover');
+  var page = document.querySelector('main.page');
+  var gate = document.getElementById('gate');
+  var form = document.getElementById('gate-form');
+  var input = document.getElementById('pw');
+  var eye = document.getElementById('eye');
+  var err = document.getElementById('err');
+  var root = document.documentElement;
+  var PASSWORD = 'surtan';
+  var vid = document.getElementById('bgvid');
+  var heroVideo = document.getElementById('hero-video');
+  var useHeroSound = false;
+
+  (function () {
+    if (!vid) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var saver = navigator.connection && navigator.connection.saveData;
+    if (reduce || saver) { vid.remove(); vid = null; return; }
+    var wide = window.matchMedia && window.matchMedia('(min-aspect-ratio: 1/1)').matches;
+    vid.muted = true;
+    vid.addEventListener('playing', function () { vid.classList.add('on'); });
+    vid.src = wide ? 'media/lotus-wide.mp4' : 'media/lotus-portrait.mp4';
+    var p = vid.play();
+    if (p && p.catch) p.catch(function () {});
+  })();
+
+  /* Sound: browsers only allow audio after a tap or key press, so it starts on the first one. */
+  var sound = document.getElementById('sound');
+  var audio = new Audio('media/lotus.mp3');
+  audio.loop = true;
+  audio.preload = (navigator.connection && navigator.connection.saveData) ? 'none' : 'auto';
+  var wantSound = true;
+  var unlockEvents = ['click', 'touchend', 'keydown'];
+
+  function syncSound() {
+    var active = useHeroSound ? heroVideo : audio;
+    sound.setAttribute('aria-pressed', (!active.paused && !active.muted) ? 'true' : 'false');
+  }
+  audio.addEventListener('play', syncSound);
+  audio.addEventListener('pause', syncSound);
+  heroVideo.addEventListener('playing', syncSound);
+  heroVideo.addEventListener('pause', syncSound);
+  heroVideo.addEventListener('volumechange', syncSound);
+
+  function startSound() {
+    if (!wantSound || !audio.paused) return;
+    var p = audio.play();
+    if (p && p.then) {
+      p.then(function () {
+        if (vid) { try { vid.currentTime = 0; } catch (e) {} }
+        unlockEvents.forEach(function (t) { document.removeEventListener(t, startSound); });
+      }).catch(function () {});
+    }
+  }
+  unlockEvents.forEach(function (t) { document.addEventListener(t, startSound, { passive: true }); });
+  startSound();
+
+  sound.addEventListener('click', function () {
+    if (useHeroSound) {
+      heroVideo.muted = !heroVideo.muted;
+      if (!heroVideo.muted && heroVideo.paused) heroVideo.play().catch(function () {});
+      syncSound();
+      return;
+    }
+    if (audio.paused) { wantSound = true; startSound(); }
+    else { wantSound = false; audio.pause(); }
+  });
+
+  root.classList.add('locked');
+  if (page) page.setAttribute('inert', '');
+
+  eye.addEventListener('click', function () {
+    var show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    eye.setAttribute('aria-pressed', show ? 'true' : 'false');
+    eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+  });
+
+  document.getElementById('fill').addEventListener('click', function () {
+    input.value = 'SURTAN';
+    err.textContent = '';
+  });
+
+  input.addEventListener('input', function () { err.textContent = ''; });
+
+  function openInvite() {
+    useHeroSound = true;
+    audio.pause();
+    heroVideo.src = 'img/hero_bg.mp4';
+    heroVideo.load();
+    var heroPlayback = heroVideo.play();
+    if (heroPlayback && heroPlayback.catch) {
+      heroPlayback.catch(function () {
+        heroVideo.muted = true;
+        heroVideo.play().catch(function () {});
+      });
+    }
+    syncSound();
+    cover.classList.add('is-open');
+    root.classList.remove('locked');
+    if (page) page.removeAttribute('inert');
+    window.scrollTo(0, 0);
+    var h = document.querySelector('.names');
+    if (h) { try { h.focus({ preventScroll: true }); } catch (e) {} }
+    setTimeout(function () {
+      cover.hidden = true;
+      if (vid) { vid.pause(); vid.removeAttribute('src'); vid.load(); }
+    }, 750);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = input.value.trim().replace(/^#/, '').toLowerCase();
+    if (v === PASSWORD) { openInvite(); return; }
+    err.textContent = v ? "That's not it. The password is shown below." : 'Please enter the password.';
+    gate.classList.remove('shake'); void gate.offsetWidth; gate.classList.add('shake');
+    input.focus();
+  });
+})();
+</script>
+
+</body></html>
