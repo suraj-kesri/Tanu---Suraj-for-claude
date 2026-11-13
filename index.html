@@ -178,6 +178,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
 .item img.oval { height: 92px; }
 .item h3 { font-family: var(--f-head); font-weight: 700; font-size: 25px; line-height: 1.2; color: var(--ink); }
 .item p { max-width: 34ch; text-wrap: pretty; }
+.location-link { min-height: 44px; display: inline-flex; align-items: center; color: var(--ink); font-family: var(--f-label); font-weight: 700; text-transform: uppercase; text-underline-offset: 4px; }
+.location-link:hover { color: var(--gold); }
 
 /* ---------- Program ---------- */
 .program .in { padding-block: 42px 38px; }
@@ -205,6 +207,12 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
 .person { display: grid; gap: 2px; justify-items: center; min-width: 0; }
 .person .nm { font-family: var(--f-script); font-size: 29px; line-height: 1.15; color: var(--ink-soft); }
 .person a { color: var(--ink); font-family: var(--f-body); font-weight: 700; font-size: 17px; letter-spacing: .02em; text-decoration: underline; text-underline-offset: 4px; min-height: 44px; display: inline-flex; align-items: center; font-variant-numeric: tabular-nums; }
+.countdown { width: min(100%, 400px); padding: 22px 14px; color: #352b21; }
+.countdown-title { margin-bottom: 16px; font-family: var(--f-head); font-size: 25px; font-weight: 400; line-height: 1.2; }
+.countdown-units { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; }
+.countdown-unit { display: grid; gap: 5px; justify-items: center; }
+.countdown-value { font-family: var(--f-body); font-size: clamp(26px, 8vw, 36px); font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.countdown-label { font-family: var(--f-label); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
 .contact .btn { margin-top: 6px; }
 .foot { background: var(--night); color: #cdb894; text-align: center; font-family: var(--f-label); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; padding-block: 22px calc(22px + env(safe-area-inset-bottom, 0px)); }
 
@@ -303,6 +311,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
         <img src="img/arch.png" alt="" width="720" height="600">
         <h3>Sagai Venue</h3>
         <p>The ceremony will take place at Black Bears Farmstay, Jaipur, an open air garden space. Expect fresh air, soft grass, and a beautiful golden hour glow, with a hint of chill in the late evening.</p>
+        <a class="location-link" href="https://maps.app.goo.gl/3twVTzj8wV6Gx1yT9" target="_blank" rel="noopener">Click for location</a>
       </div>
       <div class="item">
         <img class="oval" src="img/oval.png" alt="" width="820" height="588">
@@ -365,6 +374,15 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
         <div class="person"><span class="nm">Tanu Debnath</span><a href="tel:+917005333031">7005333031</a></div>
         <div class="person"><span class="nm">Suraj Kesri</span><a href="tel:+919455386877">9455386877</a></div>
       </div>
+      <div class="countdown" id="countdown" role="timer" aria-label="Countdown to December 7, 2026 at 3:00 PM India Standard Time" aria-live="off">
+        <h3 class="countdown-title">See you in...</h3>
+        <div class="countdown-units">
+          <div class="countdown-unit"><span class="countdown-value" id="countdown-days">0</span><span class="countdown-label">Days</span></div>
+          <div class="countdown-unit"><span class="countdown-value" id="countdown-hours">0</span><span class="countdown-label">Hours</span></div>
+          <div class="countdown-unit"><span class="countdown-value" id="countdown-minutes">00</span><span class="countdown-label">Minutes</span></div>
+          <div class="countdown-unit"><span class="countdown-value" id="countdown-seconds">00</span><span class="countdown-label">Seconds</span></div>
+        </div>
+      </div>
       <a class="btn btn--dark" href="https://forms.gle/bnyNScFQsySujCT38" target="_blank" rel="noopener">RSVP here</a>
     </div>
   </section>
@@ -396,7 +414,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
       '.hero .names, .hero .tagline, .hero .btn, .hero .chips, ' +
       '.story .heading, .story .frame, .story p, .stack img, ' +
       '.ceremony header, .ceremony .item, .program .heading, .program li, ' +
-      '.gallery-caption, .gallery img, .contact .portrait, .contact h2, .contact .people, .contact .btn'
+      '.gallery-caption, .gallery img, .contact .portrait, .contact h2, .contact .people, .contact .countdown, .contact .btn'
     );
     elements.forEach(function (element) {
       element.classList.add('reveal');
@@ -415,6 +433,34 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
     elements.forEach(function (element) { observer.observe(element); });
+  })();
+
+  (function () {
+    var countdown = document.getElementById('countdown');
+    if (!countdown) return;
+    var target = new Date('2026-12-07T15:00:00+05:30').getTime();
+    var days = document.getElementById('countdown-days');
+    var hours = document.getElementById('countdown-hours');
+    var minutes = document.getElementById('countdown-minutes');
+    var seconds = document.getElementById('countdown-seconds');
+    var title = countdown.querySelector('.countdown-title');
+    var timer = null;
+
+    function updateCountdown() {
+      var remaining = Math.max(0, target - Date.now());
+      var totalSeconds = Math.floor(remaining / 1000);
+      days.textContent = Math.floor(totalSeconds / 86400);
+      hours.textContent = Math.floor((totalSeconds % 86400) / 3600);
+      minutes.textContent = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+      seconds.textContent = String(totalSeconds % 60).padStart(2, '0');
+      if (remaining === 0) {
+        title.textContent = 'The celebration is here!';
+        if (timer !== null) window.clearInterval(timer);
+      }
+    }
+
+    updateCountdown();
+    if (target > Date.now()) timer = window.setInterval(updateCountdown, 1000);
   })();
 
   (function () {
